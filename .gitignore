@@ -115,7 +115,10 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+<<<<<<< HEAD
 
 
 __pycache__/
 *.pyc
+=======
+>>>>>>> master

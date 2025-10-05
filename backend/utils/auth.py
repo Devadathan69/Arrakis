@@ -1,7 +1,12 @@
 import bcrypt
+<<<<<<< HEAD
 import jwt
 from functools import wraps
 from flask import request, jsonify, current_app
+=======
+from functools import wraps
+from flask import request, jsonify
+>>>>>>> master
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from utils.json_handler import json_handler
 
@@ -79,6 +84,7 @@ def require_role(*required_roles):
             return f(*args, **kwargs)
         return decorated_function
     return decorator
+<<<<<<< HEAD
 
 def decode_jwt_token(token: str) -> dict:
     """Decode JWT token for WebSocket authentication"""
@@ -116,3 +122,5 @@ def decode_jwt_token(token: str) -> dict:
     except Exception as e:
         print(f"Error decoding JWT token: {str(e)}")
         return None
+=======
+>>>>>>> master

@@ -212,14 +212,6 @@ export const Scheduling: React.FC = () => {
     );
   };
 
-  // Returns a stable Day N label based on chronological order of scheduled dates
-  const getShootDayLabel = (date: Date) => {
-    const uniqueDates = Array.from(new Set(scheduleEvents.map(e => e.date.toDateString())));
-    uniqueDates.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-    const index = uniqueDates.indexOf(date.toDateString());
-    return index >= 0 ? `Day ${index + 1}` : '';
-  };
-
   const navigateMonth = (direction: 'prev' | 'next') => {
     const newDate = new Date(currentDate);
     if (direction === 'prev') {
@@ -283,7 +275,7 @@ export const Scheduling: React.FC = () => {
                       : 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400'
                   }`}
                 >
-                  {getShootDayLabel(event.date) || event.location}
+                  {event.location}
                 </div>
               ))}
               {events.length > 2 && (

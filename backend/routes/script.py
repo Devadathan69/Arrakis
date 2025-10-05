@@ -2,9 +2,12 @@ from flask import Blueprint, request, jsonify, current_app
 from utils.json_handler import json_handler
 from datetime import datetime
 import os
+<<<<<<< HEAD
 from websocket_manager import get_websocket_manager
 from utils.script_metrics import script_metrics
 from utils.pdf_extractor import pdf_extractor
+=======
+>>>>>>> master
 
 script_bp = Blueprint('script', __name__)
 
@@ -22,6 +25,7 @@ def get_script():
                 'message': 'Script data not found'
             }), 404
         
+<<<<<<< HEAD
         # Recalculate metrics if they're missing or zero
         scenes = script_data.get('scenes', [])
         if script_data.get('totalScenes', 0) == 0 and len(scenes) > 0:
@@ -37,6 +41,8 @@ def get_script():
             # Save the updated values
             json_handler.write_json('script.json', script_data)
         
+=======
+>>>>>>> master
         transformed_script = transform_script_data(script_data)
         
         return jsonify({
@@ -51,6 +57,7 @@ def get_script():
             'message': 'Failed to fetch script'
         }), 500
 
+<<<<<<< HEAD
 @script_bp.route('/metrics', methods=['GET'])
 def get_script_metrics():
     """Get script metrics from script-metrics.json"""
@@ -74,6 +81,8 @@ def get_script_metrics():
             'message': 'Failed to fetch script metrics'
         }), 500
 
+=======
+>>>>>>> master
 @script_bp.route('', methods=['PUT'])
 def update_script():
     """Update script data (requires manage_script permission)"""
@@ -108,8 +117,13 @@ def update_script():
             scenes = data['scenes']
             script['scenes'] = scenes
             script['totalScenes'] = len(scenes)
+<<<<<<< HEAD
             script['totalEstimatedDuration'] = sum(scene.get('estimated_runtime_minutes', scene.get('estimatedDuration', 0)) for scene in scenes)
             script['vfxScenes'] = sum(1 for scene in scenes if scene.get('vfx_required', scene.get('vfx', False)))
+=======
+            script['totalEstimatedDuration'] = sum(scene.get('estimatedDuration', 0) for scene in scenes)
+            script['vfxScenes'] = sum(1 for scene in scenes if scene.get('vfx', False))
+>>>>>>> master
             
             # Update locations and characters
             locations = set()
@@ -126,6 +140,7 @@ def update_script():
         success = json_handler.write_json('script.json', script)
         
         if success:
+<<<<<<< HEAD
             # Update script metrics
             try:
                 script_metrics.update_metrics()
@@ -141,6 +156,8 @@ def update_script():
             except Exception as ws_error:
                 current_app.logger.warning(f"WebSocket broadcast failed: {str(ws_error)}")
             
+=======
+>>>>>>> master
             return jsonify({
                 'success': True,
                 'data': script,
@@ -153,10 +170,16 @@ def update_script():
             }), 500
             
     except Exception as e:
+<<<<<<< HEAD
         current_app.logger.error(f"Error updating script: {str(e)}")
         return jsonify({
             'success': False,
             'message': f'Failed to update script: {str(e)}'
+=======
+        return jsonify({
+            'success': False,
+            'message': 'Failed to update script'
+>>>>>>> master
         }), 500
 
 @script_bp.route('/scene/<scene_id>', methods=['PUT'])
@@ -217,6 +240,7 @@ def update_scene(scene_id):
         success = json_handler.write_json('script.json', script)
         
         if success:
+<<<<<<< HEAD
             # Update script metrics
             try:
                 script_metrics.update_metrics()
@@ -232,6 +256,8 @@ def update_scene(scene_id):
             except Exception as ws_error:
                 current_app.logger.warning(f"WebSocket broadcast failed: {str(ws_error)}")
             
+=======
+>>>>>>> master
             return jsonify({
                 'success': True,
                 'data': script,
@@ -249,6 +275,7 @@ def update_scene(scene_id):
             'message': 'Failed to update scene'
         }), 500
 
+<<<<<<< HEAD
 @script_bp.route('/upload-pdf', methods=['POST'])
 def upload_pdf():
     """Upload PDF and extract text"""
@@ -326,6 +353,8 @@ def upload_pdf():
             'message': f'Failed to upload PDF: {str(e)}'
         }), 500
 
+=======
+>>>>>>> master
 @script_bp.route('/text', methods=['GET', 'PUT'])
 def script_text():
     """Get or update raw script text"""
@@ -482,6 +511,7 @@ def add_scene():
         success = json_handler.write_json('script.json', script)
         
         if success:
+<<<<<<< HEAD
             # Update script metrics
             try:
                 script_metrics.update_metrics()
@@ -497,6 +527,8 @@ def add_scene():
             except Exception as ws_error:
                 current_app.logger.warning(f"WebSocket broadcast failed: {str(ws_error)}")
             
+=======
+>>>>>>> master
             return jsonify({
                 'success': True,
                 'data': script,

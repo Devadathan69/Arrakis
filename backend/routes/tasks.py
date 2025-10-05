@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 from flask import Blueprint, request, jsonify, current_app
 from utils.json_handler import json_handler
 from utils.auth import get_user_by_id
 from websocket_manager import get_websocket_manager
+=======
+from flask import Blueprint, request, jsonify
+from utils.json_handler import json_handler
+from utils.auth import get_user_by_id
+>>>>>>> master
 
 tasks_bp = Blueprint('tasks', __name__)
 
@@ -110,6 +116,7 @@ def create_task():
         success = json_handler.write_json('tasks.json', tasks)
         
         if success:
+<<<<<<< HEAD
             # Emit WebSocket event for task creation
             ws_manager = get_websocket_manager()
             if ws_manager:
@@ -118,6 +125,11 @@ def create_task():
             return jsonify({
                 'success': True,
                 'data': tasks,  # Return all tasks for consistency
+=======
+            return jsonify({
+                'success': True,
+                'data': new_task,
+>>>>>>> master
                 'message': 'Task created successfully'
             }), 201
         else:
@@ -186,6 +198,7 @@ def update_task(task_id):
         success = json_handler.update_by_id('tasks.json', task_id, data)
         
         if success:
+<<<<<<< HEAD
             # Get updated task and all tasks
             updated_task = json_handler.find_by_id('tasks.json', task_id)
             all_tasks = json_handler.read_json('tasks.json', [])
@@ -198,6 +211,14 @@ def update_task(task_id):
             return jsonify({
                 'success': True,
                 'data': all_tasks,  # Return all tasks for consistency
+=======
+            # Return updated task
+            updated_task = json_handler.find_by_id('tasks.json', task_id)
+            
+            return jsonify({
+                'success': True,
+                'data': updated_task,
+>>>>>>> master
                 'message': 'Task updated successfully'
             }), 200
         else:
@@ -228,6 +249,7 @@ def delete_task(task_id):
         success = json_handler.delete_by_id('tasks.json', task_id)
         
         if success:
+<<<<<<< HEAD
             # Get remaining tasks
             remaining_tasks = json_handler.read_json('tasks.json', [])
             
@@ -239,6 +261,10 @@ def delete_task(task_id):
             return jsonify({
                 'success': True,
                 'data': remaining_tasks,  # Return remaining tasks for consistency
+=======
+            return jsonify({
+                'success': True,
+>>>>>>> master
                 'message': 'Task deleted successfully'
             }), 200
         else:

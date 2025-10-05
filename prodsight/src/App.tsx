@@ -21,6 +21,7 @@ import { BudgetManagement } from './pages/BudgetManagement/BudgetManagement';
 import { CallSheets } from './pages/CallSheets/CallSheets';
 import { ExpenseTracking } from './pages/ExpenseTracking/ExpenseTracking';
 import { BudgetReports } from './pages/BudgetReports/BudgetReports';
+import { ProducerBudgetView } from './pages/BudgetManagement/ProducerBudgetView';
 import { PropsMarketplace } from './pages/PropsMarketplace/PropsMarketplace';
 
 // Import Producer Dashboard
@@ -61,8 +62,8 @@ function App() {
         <Route path="scheduling" element={<Scheduling />} />
         <Route path="budget-management" element={<BudgetManagement />} />
         <Route path="call-sheets" element={<CallSheets />} />
-        <Route path="expense-tracking" element={<ExpenseTracking />} />
-        <Route path="budget-reports" element={<BudgetReports />} />
+        <Route path="expense-tracking" element={<ExpenseTracking budget={null} dailyBudgetData={[]} />} />
+        <Route path="budget-reports" element={<BudgetReports dailyBudgetData={[]} />} />
         <Route path="props-marketplace" element={<PropsMarketplace />} />
         <Route path="assets" element={<Assets />} />
         <Route path="vfx" element={<VFX />} />
@@ -74,7 +75,8 @@ function App() {
         <Route path="overview" element={<ProductionManagerDashboard user={{} as any} tasks={[]} budget={null} script={null} />} />
         <Route path="scheduling" element={<Scheduling />} />
         <Route path="budget" element={<BudgetManagement />} />
-        <Route path="reports" element={<BudgetReports />} />
+        <Route path="producer/budget" element={<ProducerBudgetView />} />
+        <Route path="reports" element={<BudgetReports dailyBudgetData={[]} />} />
         <Route path="call-sheets" element={<CallSheets />} />
         <Route path="marketplace" element={<Marketplace />} />
         <Route path="admin" element={<AdminControl />} />

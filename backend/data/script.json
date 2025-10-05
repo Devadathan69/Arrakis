@@ -1,0 +1,135 @@
+{
+  "title": "Analyzed Script",
+  "scenes": [
+    {
+      "characters": [],
+      "day_night": "NIGHT",
+      "description": "A derelict radio tower is silhouetted against a stormy, lightning-streaked sky.",
+      "estimatedDuration": 1,
+      "estimated_runtime_minutes": 1,
+      "extras": [],
+      "id": "1",
+      "int_ext": "EXT",
+      "location": "Abandoned Radio Station",
+      "makeup_hair": [],
+      "mood_tone": "ominous",
+      "number": "1",
+      "props": [],
+      "scene_complexity": "Low",
+      "scene_description": "A derelict radio tower is silhouetted against a stormy, lightning-streaked sky.",
+      "scene_number": 1,
+      "scene_status": "Not Shot",
+      "set_dressing": [
+        "crumbling radio tower"
+      ],
+      "sound_requirements": [
+        "thunder"
+      ],
+      "special_equipment": [],
+      "status": "Not Shot",
+      "stunts_vfx": [],
+      "timeOfDay": "NIGHT",
+      "title": "EXT. ABANDONED RADIO STATION - NIGHT",
+      "vehicles_animals_fx": [
+        "stormy sky",
+        "lightning"
+      ],
+      "vfx": true,
+      "vfx_details": "Simulated lightning strike and storm effects.",
+      "vfx_required": true,
+      "wardrobe": []
+    },
+    {
+      "characters": [
+        "Maya Chen"
+      ],
+      "day_night": "NIGHT",
+      "description": "Maya Chen, a software engineer, is in a radio station control room at night, adjusting equipment as a strange signal emits from the speakers.",
+      "estimatedDuration": 1,
+      "estimated_runtime_minutes": 1,
+      "extras": [],
+      "id": "2",
+      "int_ext": "INT",
+      "location": "Radio Station Control Room",
+      "makeup_hair": [],
+      "mood_tone": "Mysterious",
+      "number": "2",
+      "props": [
+        "Ancient equipment",
+        "Dials",
+        "Speakers"
+      ],
+      "scene_complexity": "Low",
+      "scene_description": "Maya Chen, a software engineer, is in a radio station control room at night, adjusting equipment as a strange signal emits from the speakers.",
+      "scene_number": 2,
+      "scene_status": "Not Shot",
+      "set_dressing": [],
+      "sound_requirements": [
+        "Strange signal"
+      ],
+      "special_equipment": [],
+      "status": "Not Shot",
+      "stunts_vfx": [],
+      "timeOfDay": "NIGHT",
+      "title": "INT. RADIO STATION - CONTROL ROOM - NIGHT",
+      "vehicles_animals_fx": [],
+      "vfx": false,
+      "vfx_details": "N/A",
+      "vfx_required": false,
+      "wardrobe": []
+    },
+    {
+      "characters": [
+        "Maya",
+        "Alex"
+      ],
+      "day_night": "DAY",
+      "description": "Maya works on her laptop in her apartment's living room while her roommate, Alex, enters with coffee and inquires about her late-night work.",
+      "estimatedDuration": 1,
+      "estimated_runtime_minutes": 1,
+      "extras": [],
+      "id": "3",
+      "int_ext": "INT",
+      "location": "Maya's Apartment Living Room",
+      "makeup_hair": [],
+      "mood_tone": "conversational",
+      "number": "3",
+      "props": [
+        "laptop",
+        "audio files",
+        "coffee cup"
+      ],
+      "scene_complexity": "Low",
+      "scene_description": "Maya works on her laptop in her apartment's living room while her roommate, Alex, enters with coffee and inquires about her late-night work.",
+      "scene_number": 3,
+      "scene_status": "Not Shot",
+      "set_dressing": [],
+      "sound_requirements": [],
+      "special_equipment": [],
+      "status": "Not Shot",
+      "stunts_vfx": [],
+      "timeOfDay": "DAY",
+      "title": "INT. MAYA'S APARTMENT - LIVING ROOM - DAY",
+      "vehicles_animals_fx": [],
+      "vfx": false,
+      "vfx_details": "N/A",
+      "vfx_required": false,
+      "wardrobe": []
+    }
+  ],
+  "totalScenes": 3,
+  "totalEstimatedDuration": 3,
+  "vfxScenes": 1,
+  "version": "1.0.0",
+  "lastModified": "2025-10-06",
+  "locations": [
+    "Abandoned Radio Station",
+    "Radio Station Control Room",
+    "Maya's Apartment Living Room"
+  ],
+  "characters": [
+    "Maya Chen",
+    "Maya",
+    "Alex"
+  ]
+}

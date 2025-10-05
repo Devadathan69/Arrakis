@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   CheckSquare,
@@ -15,7 +15,7 @@ import {
   FolderOpen,
 } from 'lucide-react';
 import { KPICard } from '../../components/dashboard/KPICard';
-import { ExpenseTracker } from '../../components/expense/ExpenseTracker';
+import { ExpenseTracking } from '../../pages/ExpenseTracking/ExpenseTracking';
 import { AdminControlPanel } from '../../components/admin/AdminControlPanel';
 import { AISchedulingSystem } from '../../components/scheduling/AISchedulingSystem';
 import { CrewCoordination } from '../../components/crew/CrewCoordination';
@@ -29,7 +29,8 @@ import { GoogleCalendarIntegration } from '../../components/scheduling/GoogleCal
 import { AICallSheets } from '../../components/scheduling/AICallSheets';
 import { AssetsManager } from '../../components/assets/AssetsManager';
 import { formatCurrency } from '../../utils/formatters';
-import { Task, Budget, Script, User } from '../../api/endpoints';
+import { Task, Budget, Script, User, budgetApi, DailyBudgetData } from '../../api/endpoints';
+import { BudgetReports } from '../../pages/BudgetReports/BudgetReports';
 
 interface ProductionManagerDashboardProps {
   user: User;
@@ -41,11 +42,28 @@ interface ProductionManagerDashboardProps {
 export const ProductionManagerDashboard: React.FC<ProductionManagerDashboardProps> = ({
   user,
   tasks,
-  budget,
+  budget: initialBudget,
   script,
 }) => {
   const [activeTab, setActiveTab] = useState('overview');
   const [notifications] = useState<string[]>(['New expense pending approval', 'Call sheet updated']);
+  const [budget, setBudget] = useState<Budget | null>(initialBudget);
+  const [dailyBudgetData, setDailyBudgetData] = useState<DailyBudgetData[]>([]);
+
+  useEffect(() => {
+    const fetchBudgetData = async () => {
+      try {
+        const budgetData = await budgetApi.getBudget();
+        setBudget(budgetData.data);
+        const dailyData = await budgetApi.getDailyBudget();
+        setDailyBudgetData(dailyData.data);
+      } catch (error) {
+        console.error("Error fetching budget data:", error);
+      }
+    };
+
+    fetchBudgetData();
+  }, []);
 
   // Calculations for overview
   const completedTasks = tasks.filter(task => task.status === 'done').length;
@@ -348,7 +366,7 @@ export const ProductionManagerDashboard: React.FC<ProductionManagerDashboardProp
             exit={{ opacity: 0, x: 20 }}
             className="space-y-6"
           >
-            <ExpenseTracker budget={budget || undefined} />
+            <ExpenseTracking budget={budget} dailyBudgetData={dailyBudgetData} />
           </motion.div>
         )}
 
@@ -503,14 +521,7 @@ export const ProductionManagerDashboard: React.FC<ProductionManagerDashboardProp
             exit={{ opacity: 0, x: 20 }}
             className="space-y-6"
           >
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                Final Production Cost Reports
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                AI-powered reporting features coming soon...
-              </p>
-            </div>
+            <BudgetReports dailyBudgetData={dailyBudgetData} />
           </motion.div>
         )}
       </AnimatePresence>

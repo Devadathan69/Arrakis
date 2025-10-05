@@ -1,4 +1,4 @@
-import { apiClient, ApiResponse } from './client';
+import { apiClient } from './client';
 
 // Type definitions
 export interface User {
@@ -50,6 +50,15 @@ export interface Budget {
     riskFactors: string[];
   };
 }
+
+export interface DailyBudgetData {
+  date: string;
+  daily_total: number;
+  categories: {
+    [category: string]: number;
+  };
+}
+
 
 export interface Scene {
   id: string;
@@ -140,29 +149,15 @@ export const tasksApi = {
 
 export const budgetApi = {
   getBudget: () => apiClient.get<Budget>('/budget'),
+  getDailyBudget: () => apiClient.get<DailyBudgetData[]>('/budget/daily'),
   updateBudgetCategory: (categoryName: string, updates: Partial<BudgetCategory>) =>
     apiClient.put(`/budget/category/${categoryName}`, updates),
   addBudgetEntry: (entry: Omit<BudgetHistory, 'date'>) =>
     apiClient.post('/budget/history', { ...entry, date: new Date().toISOString() }),
 };
 
-export interface ScriptMetrics {
-  totalScenes: number;
-  totalEstimatedDuration: number;
-  vfxScenes: number;
-  totalLocations: number;
-  locations: string[];
-  characters: string[];
-  approvedScenes: number;
-  statusBreakdown: Record<string, number>;
-  lastUpdated: string;
-  scriptTitle: string;
-  scriptVersion: string;
-}
-
 export const scriptApi = {
   getScript: () => apiClient.get<Script>('/script'),
-  getMetrics: () => apiClient.get<ScriptMetrics>('/script/metrics'),
   updateScript: (script: Partial<Script>) => apiClient.put('/script', script),
   updateScene: (sceneId: string, scene: Partial<Scene>) => apiClient.put(`/script/scene/${sceneId}`, scene),
   addScene: (scene: Omit<Scene, 'id'>) => apiClient.post('/script/scenes', scene),
@@ -170,13 +165,6 @@ export const scriptApi = {
   getScene: (sceneId: string) => apiClient.get<Scene>(`/script/scene/${sceneId}`),
   getScriptText: () => apiClient.get<{content: string}>('/script/text'),
   updateScriptText: (content: string) => apiClient.put('/script/text', { content }),
-  uploadPDF: async (file: File): Promise<ApiResponse<{content: string, filename: string, length: number}>> => {
-    const formData = new FormData();
-    formData.append('file', file);
-    console.log('FormData created with file:', file.name);
-    console.log('FormData entries:', Array.from(formData.entries()));
-    return apiClient.post('/script/upload-pdf', formData);
-  },
 };
 
 export const vfxApi = {
@@ -339,7 +327,7 @@ export interface ScheduleAnalysis {
 // AI Scheduling API endpoints
 export const aiSchedulingApi = {
   // Generate AI-powered schedule using Gemini
-  generateGeminiSchedule: (constraints?: ScheduleConstraints) => 
+  generateGeminiSchedule: (constraints?: any) => 
     apiClient.post<ScheduleGenerationResponse>('/ai/generate_gemini_schedule', constraints || {}),
   
   // Get schedule preview (top 5 scenes)
