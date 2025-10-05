@@ -14,7 +14,9 @@
       "makeup_hair": [],
       "mood_tone": "ominous",
       "number": "1",
-      "props": [],
+      "props": [
+        "radio tower"
+      ],
       "scene_complexity": "Low",
       "scene_description": "A derelict radio tower is silhouetted against a turbulent, stormy sky, intermittently lit by flashes of lightning.",
       "scene_number": 1,
@@ -84,7 +86,7 @@
   "totalEstimatedDuration": 2,
   "vfxScenes": 1,
   "version": "1.0.0",
-  "lastModified": "2025-10-05",
+  "lastModified": "2025-10-06",
   "locations": [
     "Radio Station Control Room",
     "Abandoned Radio Station"

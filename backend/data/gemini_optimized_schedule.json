@@ -1,135 +1,81 @@
 {
   "optimized_schedule": {
-<<<<<<< HEAD
-    "scheduling_strategy": "The strategy prioritizes location efficiency by grouping scenes at the same location. It then optimizes for actor availability, particularly Maya Chen, by consolidating her scenes. Time of day logic (DAY, DUSK, NIGHT) is applied within these location blocks. Radio station scenes are explicitly grouped. Outdoor scenes are clustered, and potential weather dependencies are noted. Crew efficiency is addressed by aiming for balanced daily workloads.",
-=======
-    "scheduling_strategy": "The strategy prioritizes location efficiency by grouping scenes at the same location. It then optimizes for actor availability, particularly Maya Chen, by consolidating her scenes. Time of day logic (DAY, DUSK, NIGHT) is applied within these location blocks. Radio station scenes are grouped as a high priority. Government facility scenes are scheduled early due to potential logistical complexities. Desert highway scenes are grouped and considered weather-dependent. Daily workloads are balanced to minimize crew overtime.",
->>>>>>> 83978fcc9781ff065073a3a15a7dcb5a6af24164
+    "scheduling_strategy": "The strategy prioritizes location efficiency by grouping scenes at the same location. It then optimizes for actor availability, particularly Maya Chen, by consolidating her scenes. Time of day logic (DAY, DUSK, NIGHT) is applied within these location blocks. Radio station scenes are grouped as a priority. Outdoor scenes are clustered, and government facility scenes are handled with consideration for their unique requirements. Crew efficiency is maintained by balancing daily workloads and minimizing travel.",
     "total_shooting_days": 4,
     "daily_schedules": [
       {
         "day": 1,
         "scenes": [
           {
-            "scene_number": 3,
-            "scene_name": "INT. MAYA'S APARTMENT - LIVING ROOM - DAY",
-            "location": "Maya's Apartment - Living Room",
-            "time_of_day": "DAY",
-            "actors": [
-              "Maya",
-              "Alex"
-            ],
-            "duration": "1 minutes"
-          },
-          {
             "scene_number": 4,
-            "scene_description": "EXT. UNIVERSITY CAMPUS - DAY",
+            "scene_name": "EXT. UNIVERSITY CAMPUS - DAY",
             "location": "University Campus Quad",
             "time_of_day": "DAY",
-            "actors": [
-              "Maya Chen"
-            ],
+            "actors": ["Maya Chen"],
             "notes": "Start with DAY scenes at a central location."
           },
           {
             "scene_number": 5,
-            "scene_description": "INT. PROFESSOR RHODES' OFFICE - DAY",
+            "scene_name": "INT. PROFESSOR RHODES' OFFICE - DAY",
             "location": "Professor Rhodes' Office",
             "time_of_day": "DAY",
-            "actors": [
-              "Professor Rhodes",
-              "Maya Chen"
-            ],
-<<<<<<< HEAD
-            "duration": "1 minutes"
-          }
-        ],
-        "notes": "Focus on University and Apartment locations. Professor Rhodes' Office is close to the University. This day is packed for Maya but consolidates her DAY scenes."
-=======
-            "notes": "Grouped with University Campus as Professor Rhodes' office is likely nearby. Maya is available."
+            "actors": ["Professor Rhodes", "Maya Chen"],
+            "notes": "Group with University Campus if Professor Rhodes' office is nearby, or schedule immediately after Maya's campus scene to minimize her travel."
           },
           {
             "scene_number": 3,
-            "scene_description": "INT. MAYA'S APARTMENT - LIVING ROOM - DAY",
+            "scene_name": "INT. MAYA'S APARTMENT - LIVING ROOM - DAY",
             "location": "Maya's Apartment - Living Room",
             "time_of_day": "DAY",
-            "actors": [
-              "Maya Chen",
-              "Alex"
-            ],
-            "notes": "Maya is already working. Alex is introduced. Apartment scenes are typically easier to schedule."
+            "actors": ["Maya Chen", "Alex"],
+            "notes": "Group DAY scenes. Maya's apartment can be scheduled after her campus/office scenes if geographically feasible, or on a separate DAY block."
           }
         ],
-        "notes": "Focus on DAY scenes and consolidating Maya's presence. Professor Rhodes' office and Maya's apartment are likely in accessible urban/campus areas."
->>>>>>> 83978fcc9781ff065073a3a15a7dcb5a6af24164
+        "total_duration_minutes": 3,
+        "notes": "Focus on DAY scenes and consolidate Maya's presence. Assumes Professor Rhodes' office is on or near campus for efficiency."
       },
       {
         "day": 2,
         "scenes": [
           {
             "scene_number": 6,
-            "scene_description": "INT. GOVERNMENT FACILITY - BRIEFING ROOM - DAY",
+            "scene_name": "INT. GOVERNMENT FACILITY - BRIEFING ROOM - DAY",
             "location": "Government Facility - Briefing Room",
             "time_of_day": "DAY",
-            "actors": [
-              "Agent Torres"
-            ],
-            "extras": [
-              "Analysts"
-            ],
-            "notes": "Schedule government facility scenes early due to potential security/logistical requirements and to ensure Agent Torres' availability. This is a DAY scene."
+            "actors": ["Agent Torres"],
+            "extras": ["Analysts"],
+            "notes": "Schedule government facility scenes on a dedicated day due to potential security/access requirements."
           },
           {
             "scene_number": 7,
-            "scene_description": "EXT. DESERT HIGHWAY - DAY",
+            "scene_name": "EXT. DESERT HIGHWAY - DAY",
             "location": "Desert Highway",
             "time_of_day": "DAY",
-            "actors": [
-              "Maya Chen"
-            ],
-            "notes": "Group desert highway scenes. This is a DAY scene. Weather dependent."
+            "actors": ["Maya Chen"],
+            "notes": "Schedule desert highway scene during DAYlight. This is weather-dependent and should align with good forecast conditions."
           },
           {
             "scene_number": 8,
-            "scene_description": "INT. MAYA'S CAR - MOVING - DAY",
+            "scene_name": "INT. MAYA'S CAR - MOVING - DAY",
             "location": "Maya's Car",
             "time_of_day": "DAY",
-            "actors": [
-              "Maya Chen",
-              "Rhodes"
-            ],
-            "notes": "Can be shot concurrently with or immediately after Desert Highway, assuming the car is on the highway. Rhodes is introduced here. This is a DAY scene."
+            "actors": ["Maya Chen", "Rhodes"],
+            "notes": "Can be shot on the Desert Highway or similar route. Schedule with Maya and Rhodes available."
           }
         ],
-<<<<<<< HEAD
-        "notes": "Government Facility may require significant setup/security. Desert Highway and Maya's Car scenes are grouped for logistical efficiency, assuming the highway is accessible from the government facility or a staging area. This day is also demanding for Maya."
-=======
-        "notes": "Prioritize government facility. Group desert scenes. Ensure Maya and Rhodes are available for the car scene."
->>>>>>> 83978fcc9781ff065073a3a15a7dcb5a6af24164
+        "total_duration_minutes": 3,
+        "notes": "Dedicated day for government facility and outdoor desert scenes. Consolidates travel to a potentially remote area."
       },
       {
         "day": 3,
         "scenes": [
           {
             "scene_number": 9,
-            "scene_description": "EXT. RADIO STATION - PARKING AREA - DUSK",
+            "scene_name": "EXT. RADIO STATION - PARKING AREA - DUSK",
             "location": "Radio Station Parking Area",
             "time_of_day": "DUSK",
-            "actors": [
-              "Maya Chen"
-            ],
-            "notes": "Start with the DUSK scene at the radio station complex. Maya is present."
-          },
-          {
-            "scene_number": 2,
-            "scene_description": "INT. RADIO STATION - CONTROL ROOM - NIGHT",
-            "location": "Radio Station Control Room",
-            "time_of_day": "NIGHT",
-            "actors": [
-              "Maya Chen"
-            ],
-<<<<<<< HEAD
-            "duration": "1 minutes"
+            "actors": ["Maya Chen"],
+            "notes": "Schedule DUSK scene first as a natural transition into NIGHT scenes."
           },
           {
             "scene_number": 1,
@@ -137,236 +83,80 @@
             "location": "Abandoned Radio Station",
             "time_of_day": "NIGHT",
             "actors": [],
-            "duration": "1 minutes"
-          }
-        ],
-        "notes": "This day is dedicated to the Radio Station cluster. The DUSK scene is scheduled first, followed by NIGHT scenes. This maximizes efficiency for the Radio Station locations and Maya's presence."
-      },
-      {
-        "day": 4,
-        "scenes": [],
-        "notes": "Contingency Day. This day is reserved for reshoots, weather delays, or unforeseen issues. It also allows for potential overtime if absolutely necessary on previous days, but ideally, it remains unused."
-=======
-            "notes": "Immediately follow the parking area scene with the interior control room scene at the same location. Maya is present. This is a NIGHT scene."
+            "notes": "Continue NIGHT shooting. Group all radio station-related locations."
           },
           {
-            "scene_number": 1,
-            "scene_description": "EXT. ABANDONED RADIO STATION - NIGHT",
-            "location": "Abandoned Radio Station",
+            "scene_number": 2,
+            "scene_name": "INT. RADIO STATION - CONTROL ROOM - NIGHT",
+            "location": "Radio Station Control Room",
             "time_of_day": "NIGHT",
-            "actors": [],
-            "notes": "Group all radio station related scenes. This is a NIGHT scene, can be shot after the control room scene. No actors required, allowing for more flexibility."
+            "actors": ["Maya Chen"],
+            "notes": "Follow the DUSK and exterior scenes with interior control room shooting. Maya is present."
           }
         ],
-        "notes": "Consolidate all radio station scenes. Start with DUSK and move to NIGHT. Maya is present for the first two, allowing for efficient use of her time."
+        "total_duration_minutes": 3,
+        "notes": "Consolidates all radio station related scenes. DUSK scene is strategically placed at the end of the day for light transition."
       },
       {
         "day": 4,
         "scenes": [
           {
-            "scene_number": 7,
-            "scene_description": "EXT. DESERT HIGHWAY - DAY (RESHOOT/CONTINGENCY)",
-            "location": "Desert Highway",
+            "scene_number": 3,
+            "scene_name": "INT. MAYA'S APARTMENT - LIVING ROOM - DAY",
+            "location": "Maya's Apartment - Living Room",
             "time_of_day": "DAY",
-            "actors": [
-              "Maya Chen"
-            ],
-            "notes": "This day is reserved as a contingency for the desert highway scenes (Scene 7 & 8) due to weather dependency. If the original shooting day was successful, this day can be used for pick-ups or additional coverage."
+            "actors": ["Maya Chen", "Alex"],
+            "notes": "If Day 1 was too packed or geographically challenging, this scene can move here. Serves as a contingency day."
           }
         ],
-        "notes": "Dedicated contingency day for weather-dependent outdoor scenes. This ensures flexibility without impacting other scheduled days."
->>>>>>> 83978fcc9781ff065073a3a15a7dcb5a6af24164
+        "total_duration_minutes": 1,
+        "notes": "This day is a contingency buffer for weather delays or reshoots."
       }
     ],
     "actor_schedules": {
       "Maya Chen": [
-        {
-<<<<<<< HEAD
-          "day": 3,
-          "scenes": [
-            2
-          ]
-        }
-      ],
-      "Maya": [
-        {
-          "day": 1,
-          "scenes": [
-            3,
-            4,
-            5
-=======
-          "day": 1,
-          "scenes": [
-            4,
-            5,
-            3
->>>>>>> 83978fcc9781ff065073a3a15a7dcb5a6af24164
-          ]
-        },
-        {
-          "day": 2,
-          "scenes": [
-            7,
-            8
-          ]
-<<<<<<< HEAD
-=======
-        },
-        {
-          "day": 3,
-          "scenes": [
-            9,
-            2
-          ]
->>>>>>> 83978fcc9781ff065073a3a15a7dcb5a6af24164
-        }
+        { "day": 1, "scenes": [4, 5, 3] },
+        { "day": 2, "scenes": [7, 8] },
+        { "day": 3, "scenes": [9, 2] },
+        { "day": 4, "scenes": [3] }
       ],
       "Alex": [
-        {
-          "day": 1,
-          "scenes": [
-            3
-          ]
-        }
+        { "day": 1, "scenes": [3] },
+        { "day": 4, "scenes": [3] }
       ],
-      "Professor Rhodes": [
-        {
-          "day": 1,
-          "scenes": [
-            5
-          ]
-        }
-      ],
-      "Agent Torres": [
-        {
-          "day": 2,
-          "scenes": [
-            6
-          ]
-        }
-      ],
-      "Rhodes": [
-        {
-          "day": 2,
-          "scenes": [
-            8
-          ]
-        }
-      ]
+      "Professor Rhodes": [{ "day": 1, "scenes": [5] }],
+      "Agent Torres": [{ "day": 2, "scenes": [6] }],
+      "Rhodes": [{ "day": 2, "scenes": [8] }]
     },
     "location_schedule": {
-<<<<<<< HEAD
-      "Maya's Apartment - Living Room": {
-        "day": 1,
-        "scenes": [
-          3
-        ]
-      },
-=======
->>>>>>> 83978fcc9781ff065073a3a15a7dcb5a6af24164
-      "University Campus Quad": {
-        "day": 1,
-        "scenes": [
-          4
-        ]
-      },
-      "Professor Rhodes' Office": {
-        "day": 1,
-        "scenes": [
-          5
-        ]
-      },
-<<<<<<< HEAD
-=======
-      "Maya's Apartment - Living Room": {
-        "day": 1,
-        "scenes": [
-          3
-        ]
-      },
->>>>>>> 83978fcc9781ff065073a3a15a7dcb5a6af24164
-      "Government Facility - Briefing Room": {
-        "day": 2,
-        "scenes": [
-          6
-        ]
-      },
-      "Desert Highway": {
-        "day": 2,
-        "scenes": [
-          7
-<<<<<<< HEAD
-        ]
-=======
-        ],
-        "contingency_day": 4
->>>>>>> 83978fcc9781ff065073a3a15a7dcb5a6af24164
-      },
-      "Maya's Car": {
-        "day": 2,
-        "scenes": [
-          8
-        ]
-      },
-      "Radio Station Parking Area": {
-        "day": 3,
-        "scenes": [
-          9
-        ]
-      },
-      "Radio Station Control Room": {
-        "day": 3,
-        "scenes": [
-          2
-        ]
-      },
-      "Abandoned Radio Station": {
-        "day": 3,
-        "scenes": [
-          1
-        ]
-      }
+      "University Campus Quad": { "day": 1, "scenes": [4] },
+      "Professor Rhodes' Office": { "day": 1, "scenes": [5] },
+      "Maya's Apartment - Living Room": { "day": 1, "scenes": [3], "contingency_day": 4 },
+      "Government Facility - Briefing Room": { "day": 2, "scenes": [6] },
+      "Desert Highway": { "day": 2, "scenes": [7] },
+      "Maya's Car": { "day": 2, "scenes": [8] },
+      "Abandoned Radio Station": { "day": 3, "scenes": [1] },
+      "Radio Station Control Room": { "day": 3, "scenes": [2] },
+      "Radio Station Parking Area": { "day": 3, "scenes": [9] }
     },
     "optimization_benefits": [
-<<<<<<< HEAD
       "Minimized travel time and associated costs by grouping scenes by location.",
       "Reduced setup and teardown time for equipment and crew at each location.",
-      "Optimized Maya Chen's schedule to a single working day (Day 3) for her specific scenes, and consolidated Maya's scenes across two intense but efficient days.",
-      "Ensured logical flow of day/dusk/night shooting within location blocks.",
-      "Clustered outdoor scenes (Desert Highway) to allow for potential weather contingency planning.",
-      "Dedicated a contingency day to mitigate risks and avoid costly overtime."
+      "Optimized Maya Chen's schedule across concentrated working days, minimizing idle gaps.",
+      "Ensured logical flow of DAY–DUSK–NIGHT shooting within location clusters.",
+      "Clustered weather-dependent outdoor scenes with contingency planning.",
+      "Dedicated contingency day to mitigate weather and logistical risks."
     ],
     "potential_risks": [
-      "Maya's schedule on Day 1 and Day 2 is very demanding, requiring careful management of her energy and performance.",
-      "Government Facility scenes may involve significant lead time for permits and security clearances, which needs to be addressed early.",
-      "Desert Highway scenes are highly weather-dependent. A significant delay could impact Day 2 and potentially push subsequent days.",
-      "The 'Abandoned Radio Station' might have accessibility or safety concerns that need pre-production assessment.",
-      "The distinction between 'Maya Chen' and 'Maya' in the actor list needs clarification to ensure correct casting and scheduling. Assuming 'Maya Chen' is a specific character and 'Maya' is the same actor playing a different role or a typo, and they are scheduled accordingly. If they are the same person, the schedule for Maya Chen on Day 3 can be adjusted.",
-      "The 'Radio Station' scenes are grouped, but the 'Abandoned Radio Station' might be a different physical location than the 'Radio Station Control Room' and 'Parking Area', requiring travel between them on Day 3."
+      "Maya's schedule on Day 1 and Day 2 is demanding; requires careful pacing.",
+      "Government Facility scenes may involve security permits and setup time.",
+      "Desert Highway scenes are weather-sensitive and may cause delays.",
+      "Abandoned Radio Station may have accessibility/safety concerns requiring pre-assessment.",
+      "Actor name consistency (Maya vs. Maya Chen) must be verified to avoid scheduling conflicts."
     ]
   },
   "generation_info": {
-    "generated_at": "2025-10-05T23:09:56.856673",
-=======
-      "Minimized travel time and setup/teardown costs by grouping scenes by location (e.g., all radio station scenes on Day 3).",
-      "Optimized Maya Chen's schedule to a concentrated 3 days of work, minimizing her overall presence and potential for conflicts.",
-      "Scheduled DAY scenes before DUSK and NIGHT scenes within location blocks, adhering to time of day logic.",
-      "Grouped weather-dependent desert scenes and allocated a contingency day.",
-      "Prioritized government facility scenes early due to potential logistical complexities.",
-      "Balanced daily workloads to aim for standard working hours and reduce overtime risk."
-    ],
-    "potential_risks": [
-      "Weather dependency for EXT. DESERT HIGHWAY scenes (Scene 7 & 8) could cause delays, necessitating the use of the contingency day.",
-      "Government facility access and security clearances might take longer than anticipated, impacting Day 2.",
-      "Actor availability for Alex and Rhodes needs to be confirmed for their specific scenes.",
-      "The transition between locations on Day 1 (University to Apartment) and Day 2 (Government to Desert) might involve significant travel time, which needs to be factored into daily call times.",
-      "Night shoots (Day 3) can be more challenging for crew and actors, potentially impacting efficiency if not managed well."
-    ]
-  },
-  "generation_info": {
-    "generated_at": "2025-10-06T01:15:41.675151",
->>>>>>> 83978fcc9781ff065073a3a15a7dcb5a6af24164
+    "generated_at": "2025-10-06T01:43:03.968642",
     "input_scenes": 9,
     "ai_model": "gemini-pro (via google-generativeai SDK)",
     "prompt_length": 3414
