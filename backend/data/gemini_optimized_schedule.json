@@ -1,0 +1,229 @@
+{
+  "optimized_schedule": {
+    "scheduling_strategy": "The strategy prioritizes location efficiency by grouping scenes within the same physical location. It then optimizes for actor availability, particularly Maya Chen, by consolidating her scenes. Time of day logic (DAY, DUSK, NIGHT) is applied within these location blocks. Outdoor scenes are grouped, and the schedule aims for balanced daily workloads to minimize crew overtime and potential actor conflicts.",
+    "total_shooting_days": 3,
+    "daily_schedules": [
+      {
+        "day": 1,
+        "scenes": [
+          {
+            "scene_number": 3,
+            "scene_name": "INT. MAYA'S APARTMENT - LIVING ROOM - DAY",
+            "location": "Maya's Apartment - Living Room",
+            "time_of_day": "DAY",
+            "actors": [
+              "Maya",
+              "Alex"
+            ],
+            "duration": "1 minutes"
+          },
+          {
+            "scene_number": 4,
+            "scene_name": "EXT. UNIVERSITY CAMPUS - DAY",
+            "location": "University Campus Quad",
+            "time_of_day": "DAY",
+            "actors": [
+              "Maya"
+            ],
+            "duration": "1 minutes"
+          },
+          {
+            "scene_number": 5,
+            "scene_name": "INT. PROFESSOR RHODES' OFFICE - DAY",
+            "location": "Professor Rhodes' Office",
+            "time_of_day": "DAY",
+            "actors": [
+              "Professor Rhodes",
+              "Maya"
+            ],
+            "duration": "1 minutes"
+          }
+        ],
+        "notes": "Focus on indoor, daytime scenes at university-related locations. This day is designed to consolidate Maya's early scenes and Professor Rhodes' availability."
+      },
+      {
+        "day": 2,
+        "scenes": [
+          {
+            "scene_number": 6,
+            "scene_name": "INT. GOVERNMENT FACILITY - BRIEFING ROOM - DAY",
+            "location": "Government Facility - Briefing Room",
+            "time_of_day": "DAY",
+            "actors": [
+              "Agent Torres"
+            ],
+            "extras": [
+              "Analysts"
+            ],
+            "duration": "1 minutes"
+          },
+          {
+            "scene_number": 7,
+            "scene_name": "EXT. DESERT HIGHWAY - DAY",
+            "location": "Desert Highway",
+            "time_of_day": "DAY",
+            "actors": [
+              "Maya"
+            ],
+            "duration": "1 minutes"
+          },
+          {
+            "scene_number": 8,
+            "scene_name": "INT. MAYA'S CAR - MOVING - DAY",
+            "location": "Maya's Car",
+            "time_of_day": "DAY",
+            "actors": [
+              "Maya",
+              "Rhodes"
+            ],
+            "duration": "1 minutes"
+          }
+        ],
+        "notes": "This day groups the government facility scene (requiring potential permissions) with outdoor desert scenes. Maya's car scene can be shot immediately after the highway scene if the car is on location."
+      },
+      {
+        "day": 3,
+        "scenes": [
+          {
+            "scene_number": 9,
+            "scene_name": "EXT. RADIO STATION - PARKING AREA - DUSK",
+            "location": "Radio Station Parking Area",
+            "time_of_day": "DUSK",
+            "actors": [
+              "Maya"
+            ],
+            "duration": "1 minutes"
+          },
+          {
+            "scene_number": 2,
+            "scene_name": "INT. RADIO STATION - CONTROL ROOM - NIGHT",
+            "location": "Radio Station Control Room",
+            "time_of_day": "NIGHT",
+            "actors": [
+              "Maya Chen"
+            ],
+            "duration": "1 minutes"
+          },
+          {
+            "scene_number": 1,
+            "scene_name": "EXT. ABANDONED RADIO STATION - NIGHT",
+            "location": "Abandoned Radio Station",
+            "time_of_day": "NIGHT",
+            "actors": [],
+            "extras": [],
+            "duration": "1 minutes"
+          }
+        ],
+        "notes": "This day consolidates all Radio Station related scenes, starting with the DUSK scene and moving into NIGHT. This maximizes efficiency for this specific location cluster."
+      }
+    ],
+    "actor_schedules": {
+      "Maya Chen": [
+        {
+          "day": 3,
+          "scenes": [
+            2
+          ]
+        }
+      ],
+      "Maya": [
+        {
+          "day": 1,
+          "scenes": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "day": 2,
+          "scenes": [
+            7,
+            8
+          ]
+        }
+      ],
+      "Alex": [
+        {
+          "day": 1,
+          "scenes": [
+            3
+          ]
+        }
+      ],
+      "Professor Rhodes": [
+        {
+          "day": 1,
+          "scenes": [
+            5
+          ]
+        }
+      ],
+      "Agent Torres": [
+        {
+          "day": 2,
+          "scenes": [
+            6
+          ]
+        }
+      ],
+      "Rhodes": [
+        {
+          "day": 2,
+          "scenes": [
+            8
+          ]
+        }
+      ]
+    },
+    "location_schedule": {
+      "Maya's Apartment - Living Room": {
+        "day": 1
+      },
+      "University Campus Quad": {
+        "day": 1
+      },
+      "Professor Rhodes' Office": {
+        "day": 1
+      },
+      "Government Facility - Briefing Room": {
+        "day": 2
+      },
+      "Desert Highway": {
+        "day": 2
+      },
+      "Maya's Car": {
+        "day": 2
+      },
+      "Radio Station Parking Area": {
+        "day": 3
+      },
+      "Radio Station Control Room": {
+        "day": 3
+      },
+      "Abandoned Radio Station": {
+        "day": 3
+      }
+    },
+    "optimization_benefits": [
+      "Minimized travel between locations by grouping scenes geographically.",
+      "Optimized Maya Chen's schedule to a single working day (Day 3) for her specific scenes, and consolidated Maya's scenes across fewer days (Day 1 & 2).",
+      "Reduced setup and teardown time by shooting all scenes at the Radio Station complex consecutively.",
+      "Balanced daily workloads, with Day 1 and Day 2 featuring multiple scenes and actors, and Day 3 focusing on a specific location cluster.",
+      "Adhered to time-of-day requirements within location blocks (DAY, DUSK, NIGHT)."
+    ],
+    "potential_risks": [
+      "Weather dependency for EXT. DESERT HIGHWAY (Scene 7) and EXT. RADIO STATION - PARKING AREA (Scene 9). A backup indoor location or flexible scheduling for these scenes might be necessary.",
+      "Potential for actor availability conflicts not explicitly stated. This schedule assumes all actors are available on the designated days.",
+      "Government facility scenes (Scene 6) may have specific access or security requirements that could impact scheduling flexibility or require advance notice.",
+      "The 'Maya' actor in Scene 3 is distinct from 'Maya Chen' in Scene 2. The schedule assumes these are two different actors or that 'Maya' is a nickname for 'Maya Chen' in that context. If 'Maya' is indeed 'Maya Chen', Scene 3 could potentially be moved to Day 3 if feasible for Alex's schedule.",
+      "The duration of each scene is only 1 minute. This schedule assumes efficient shooting and minimal retakes. Longer shooting times per scene would necessitate more days."
+    ]
+  },
+  "generation_info": {
+    "generated_at": "2025-10-06T00:03:30.326246",
+    "input_scenes": 9,
+    "ai_model": "gemini-pro (via google-generativeai SDK)",
+    "prompt_length": 3414
+  }
+}
