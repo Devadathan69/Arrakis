@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { KPICard } from '../../components/dashboard/KPICard';
 import { Task, Budget, Script, User, Scene } from '../../api/endpoints';
+import { useScriptMetrics } from '../../hooks/useScriptMetrics';
 
 interface DirectorDashboardProps {
   user: User;
@@ -58,10 +59,15 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
   const [filterStatus, setFilterStatus] = useState('all');
   const [loading, setLoading] = useState(false);
 
-  const approvedScenes = script?.scenes.filter(scene => scene.scene_status === 'Approved').length || 0;
-  const totalScenes = script?.totalScenes || 0;
-  const vfxScenes = script?.vfxScenes || 0;
-  const totalDuration = script?.totalEstimatedDuration || 0;
+  // Use script metrics instead of calculating from script data
+  const { metrics: scriptMetrics, loading: metricsLoading } = useScriptMetrics();
+
+  // Get metrics from the dedicated metrics API
+  const approvedScenes = scriptMetrics?.approvedScenes || 0;
+  const totalScenes = scriptMetrics?.totalScenes || 0;
+  const vfxScenes = scriptMetrics?.vfxScenes || 0;
+  const totalDuration = scriptMetrics?.totalEstimatedDuration || 0;
+  const totalLocations = scriptMetrics?.totalLocations || 0;
 
   const directorTasks = tasks.filter(task => task.category === 'Script' || task.assignee.includes('Director'));
 
@@ -284,10 +290,10 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
           <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
             Scene Status Breakdown
           </h3>
-          {script && (
+          {scriptMetrics && (
             <div className="space-y-4">
               {['Approved', 'In Review', 'Not Shot'].map((status, index) => {
-                const count = script.scenes.filter(scene => scene.scene_status === status).length;
+                const count = scriptMetrics.statusBreakdown[status] || 0;
                 const percentage = totalScenes > 0 ? (count / totalScenes) * 100 : 0;
                 
                 return (
@@ -383,10 +389,10 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
           <div>
             <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center">
               <Users className="h-4 w-4 mr-2" />
-              Characters ({script?.characters.length || 0})
+              Characters ({scriptMetrics?.characters.length || 0})
             </h4>
             <div className="flex flex-wrap gap-2">
-              {script?.characters.slice(0, 8).map((character) => (
+              {scriptMetrics?.characters.slice(0, 8).map((character) => (
                 <span
                   key={character}
                   className="px-2 py-1 text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 rounded-full"
@@ -394,9 +400,9 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
                   {character}
                 </span>
               ))}
-              {(script?.characters.length || 0) > 8 && (
+              {(scriptMetrics?.characters.length || 0) > 8 && (
                 <span className="px-2 py-1 text-xs bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 rounded-full">
-                  +{(script?.characters.length || 0) - 8} more
+                  +{(scriptMetrics?.characters.length || 0) - 8} more
                 </span>
               )}
             </div>
@@ -405,10 +411,10 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
           <div>
             <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center">
               <Video className="h-4 w-4 mr-2" />
-              Locations ({script?.locations.length || 0})
+              Locations ({scriptMetrics?.totalLocations || 0})
             </h4>
             <div className="flex flex-wrap gap-2">
-              {script?.locations.slice(0, 6).map((location) => (
+              {scriptMetrics?.locations.slice(0, 6).map((location) => (
                 <span
                   key={location}
                   className="px-2 py-1 text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 rounded-full"
@@ -416,9 +422,9 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
                   {location}
                 </span>
               ))}
-              {(script?.locations.length || 0) > 6 && (
+              {(scriptMetrics?.totalLocations || 0) > 6 && (
                 <span className="px-2 py-1 text-xs bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 rounded-full">
-                  +{(script?.locations.length || 0) - 6} more
+                  +{(scriptMetrics?.totalLocations || 0) - 6} more
                 </span>
               )}
             </div>

@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from utils.json_handler import json_handler
 from datetime import datetime
+from websocket_manager import get_websocket_manager
 
 budget_bp = Blueprint('budget', __name__)
 
@@ -82,6 +83,11 @@ def update_budget_category(category_name):
         success = json_handler.write_json('budget.json', budget)
         
         if success:
+            # Emit WebSocket event for budget update
+            ws_manager = get_websocket_manager()
+            if ws_manager:
+                ws_manager.broadcast_budget_update(budget, 'updated')
+            
             return jsonify({
                 'success': True,
                 'data': budget,
