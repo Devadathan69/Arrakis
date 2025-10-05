@@ -62,8 +62,8 @@ function App() {
         <Route path="scheduling" element={<Scheduling />} />
         <Route path="budget-management" element={<BudgetManagement />} />
         <Route path="call-sheets" element={<CallSheets />} />
-        <Route path="expense-tracking" element={<ExpenseTracking />} />
-        <Route path="budget-reports" element={<BudgetReports />} />
+        <Route path="expense-tracking" element={<ExpenseTracking budget={null} dailyBudgetData={[]} />} />
+        <Route path="budget-reports" element={<BudgetReports dailyBudgetData={[]} />} />
         <Route path="props-marketplace" element={<PropsMarketplace />} />
         <Route path="assets" element={<Assets />} />
         <Route path="vfx" element={<VFX />} />
@@ -76,7 +76,7 @@ function App() {
         <Route path="scheduling" element={<Scheduling />} />
         <Route path="budget" element={<BudgetManagement />} />
         <Route path="producer/budget" element={<ProducerBudgetView />} />
-        <Route path="reports" element={<BudgetReports />} />
+        <Route path="reports" element={<BudgetReports dailyBudgetData={[]} />} />
         <Route path="call-sheets" element={<CallSheets />} />
         <Route path="marketplace" element={<Marketplace />} />
         <Route path="admin" element={<AdminControl />} />

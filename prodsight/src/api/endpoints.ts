@@ -51,6 +51,15 @@ export interface Budget {
   };
 }
 
+export interface DailyBudgetData {
+  date: string;
+  daily_total: number;
+  categories: {
+    [category: string]: number;
+  };
+}
+
+
 export interface Scene {
   id: string;
   scene_number: number;
@@ -140,6 +149,7 @@ export const tasksApi = {
 
 export const budgetApi = {
   getBudget: () => apiClient.get<Budget>('/budget'),
+  getDailyBudget: () => apiClient.get<DailyBudgetData[]>('/budget/daily'),
   updateBudgetCategory: (categoryName: string, updates: Partial<BudgetCategory>) =>
     apiClient.put(`/budget/category/${categoryName}`, updates),
   addBudgetEntry: (entry: Omit<BudgetHistory, 'date'>) =>
@@ -317,7 +327,7 @@ export interface ScheduleAnalysis {
 // AI Scheduling API endpoints
 export const aiSchedulingApi = {
   // Generate AI-powered schedule using Gemini
-  generateGeminiSchedule: (constraints?: ScheduleConstraints) => 
+  generateGeminiSchedule: (constraints?: any) => 
     apiClient.post<ScheduleGenerationResponse>('/ai/generate_gemini_schedule', constraints || {}),
   
   // Get schedule preview (top 5 scenes)

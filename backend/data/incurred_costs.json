@@ -1,0 +1,26 @@
+{
+    "2025-10-06": {
+        "date": "2025-10-06",
+        "junior_artist_wage": 20000,
+        "location_rent": 45000,
+        "travel_expense": 18000,
+        "food_expense": 11000,
+        "others": 5000,
+        "art_costume_expense": {
+            "rented": [
+                {
+                    "item": "Costume rental",
+                    "cost": 5000
+                }
+            ],
+            "purchased": [
+                {
+                    "item": "Props",
+                    "cost": 10000,
+                    "date": "2025-10-06"
+                }
+            ]
+        },
+        "total_incurred": 114000
+    }
+}

@@ -3,168 +3,122 @@ import { motion } from 'framer-motion';
 import {
   TrendingUp,
   Plus,
-  Calendar,
-  DollarSign,
-  Receipt,
   MapPin,
   Users,
   Utensils,
   Car,
   Camera,
   Shirt,
-  Edit,
-  Trash2,
   Download,
-  Filter,
   Search,
-  AlertTriangle,
   CheckCircle,
 } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { Modal } from '../../components/ui/Modal';
+import { apiClient } from '../../api/client';
+import { toast } from 'react-hot-toast';
 
-interface DailyExpense {
-  id: string;
-  date: Date;
-  category: 'junior_artists' | 'travel' | 'location_rent' | 'food' | 'props_costumes' | 'equipment' | 'miscellaneous';
-  subcategory: string;
+interface ExpenseItem {
+  date: string;
+  category: string;
   amount: number;
   description: string;
-  location: string;
-  receipt?: string;
-  approvedBy?: string;
-  status: 'pending' | 'approved' | 'rejected';
-  type: 'rent' | 'purchase' | 'service';
+  type: 'rented' | 'purchased';
+  item?: string;
   vendor?: string;
-  notes?: string;
+  location?: string;
 }
 
-interface ExpenseSummary {
-  daily: number;
-  weekly: number;
-  monthly: number;
-  totalBudget: number;
-  remainingBudget: number;
+interface ExpenseTrackingProps {
+  budget?: unknown;
+  dailyBudgetData?: unknown[];
 }
 
-export const ExpenseTracking: React.FC = () => {
-  const [expenses, setExpenses] = useState<DailyExpense[]>([]);
-  const [filteredExpenses, setFilteredExpenses] = useState<DailyExpense[]>([]);
+export const ExpenseTracking: React.FC<ExpenseTrackingProps> = ({ budget: _budget, dailyBudgetData: _dailyBudgetData }) => {
+  const [expenses, setExpenses] = useState<ExpenseItem[]>([]);
+  const [filteredExpenses, setFilteredExpenses] = useState<ExpenseItem[]>([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showAddModal, setShowAddModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [selectedExpense, setSelectedExpense] = useState<DailyExpense | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterCategory, setFilterCategory] = useState('all');
-  const [filterStatus, setFilterStatus] = useState('all');
+  const [filterType, setFilterType] = useState('all');
   const [viewPeriod, setViewPeriod] = useState<'daily' | 'weekly' | 'monthly'>('daily');
-
-  const [newExpense, setNewExpense] = useState<Partial<DailyExpense>>({
-    date: new Date(),
-    category: 'junior_artists',
-    amount: 0,
-    description: '',
-    location: '',
-    status: 'pending',
-    type: 'service'
-  });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize demo expense data
-    const demoExpenses: DailyExpense[] = [
-      {
-        id: '1',
-        date: new Date(2024, 9, 15),
-        category: 'junior_artists',
-        subcategory: 'Daily Wages',
-        amount: 15000,
-        description: '10 junior artists for street scene shooting',
-        location: 'Mumbai Street',
-        status: 'approved',
-        type: 'service',
-        vendor: 'Local Casting Agency',
-        approvedBy: 'Producer',
-        notes: '10 artists × ₹1500/day'
-      },
-      {
-        id: '2',
-        date: new Date(2024, 9, 15),
-        category: 'food',
-        subcategory: 'Catering',
-        amount: 8500,
-        description: 'Lunch and snacks for cast and crew',
-        location: 'Mumbai Street',
-        status: 'approved',
-        type: 'service',
-        vendor: 'Mumbai Caterers',
-        approvedBy: 'Production Manager'
-      },
-      {
-        id: '3',
-        date: new Date(2024, 9, 15),
-        category: 'travel',
-        subcategory: 'Local Transport',
-        amount: 3200,
-        description: 'Taxi and auto charges for equipment transport',
-        location: 'Mumbai',
-        status: 'approved',
-        type: 'service',
-        vendor: 'Local Transport'
-      },
-      {
-        id: '4',
-        date: new Date(2024, 9, 16),
-        category: 'location_rent',
-        subcategory: 'Coffee Shop Rental',
-        amount: 12000,
-        description: 'Coffee shop location rental for interior scenes',
-        location: 'Kochi',
-        status: 'approved',
-        type: 'rent',
-        vendor: 'Cafe Mocha - Kochi'
-      },
-      {
-        id: '5',
-        date: new Date(2024, 9, 16),
-        category: 'props_costumes',
-        subcategory: 'Props Purchase',
-        amount: 4500,
-        description: 'Coffee cups, newspapers, and decorative items',
-        location: 'Kochi',
-        status: 'pending',
-        type: 'purchase',
-        vendor: 'Local Props Store',
-        notes: 'Items will be added to inventory after purchase'
-      },
-      {
-        id: '6',
-        date: new Date(2024, 9, 17),
-        category: 'equipment',
-        subcategory: 'Camera Rental',
-        amount: 18000,
-        description: 'Additional camera equipment for multi-angle shots',
-        location: 'Kochi',
-        status: 'approved',
-        type: 'rent',
-        vendor: 'Kochi Camera Rentals'
-      },
-      {
-        id: '7',
-        date: new Date(2024, 9, 17),
-        category: 'junior_artists',
-        subcategory: 'Background Actors',
-        amount: 9000,
-        description: '6 background actors for beach scene',
-        location: 'Kochi Beach',
-        status: 'approved',
-        type: 'service',
-        vendor: 'Kochi Casting'
-      }
-    ];
-
-    setExpenses(demoExpenses);
-    setFilteredExpenses(demoExpenses);
+    fetchExpenseData();
   }, []);
+
+  const fetchExpenseData = async () => {
+    try {
+      setLoading(true);
+      const [dailyRes, purchasedRes] = await Promise.all([
+        apiClient.get('/budget/daily'),
+        apiClient.get('/budget/purchased-items') // Assuming this endpoint exists
+      ]);
+
+      const expenseItems: ExpenseItem[] = [];
+
+      // Process daily incurred costs
+      Object.entries(dailyRes.data.data || {}).forEach(([date, data]: [string, any]) => {
+        if (data.incurred) {
+          // Add individual expense categories
+          Object.entries(data.incurred).forEach(([category, amount]) => {
+            if (typeof amount === 'number' && amount > 0 && category !== 'total_incurred' && category !== 'art_costume_expense') {
+              expenseItems.push({
+                date,
+                category: category.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                amount,
+                description: `${category.replace(/_/g, ' ')} expense`,
+                type: 'rented', // Default assumption
+                vendor: 'Production Team'
+              });
+            }
+          });
+
+          // Handle art/costume expenses separately
+          if (data.incurred.art_costume_expense) {
+            const artExpenses = data.incurred.art_costume_expense;
+            if (artExpenses.rented) {
+              artExpenses.rented.forEach((item: any) => {
+                expenseItems.push({
+                  date,
+                  category: 'Art & Costume',
+                  amount: item.cost || 0,
+                  description: item.item || 'Art/Costume Item',
+                  type: 'rented',
+                  item: item.item,
+                  vendor: 'Costume Department'
+                });
+              });
+            }
+          }
+        }
+      });
+
+      // Process purchased items
+      if (purchasedRes.data) {
+        purchasedRes.data.forEach((item: any) => {
+          expenseItems.push({
+            date: item.date,
+            category: 'Purchased Items',
+            amount: item.cost,
+            description: item.item,
+            type: 'purchased',
+            item: item.item,
+            vendor: 'Procurement'
+          });
+        });
+      }
+
+      setExpenses(expenseItems);
+    } catch (error) {
+      console.error('Failed to fetch expense data:', error);
+      toast.error('Failed to load expense data');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     // Apply filters
@@ -241,17 +195,7 @@ export const ExpenseTracking: React.FC = () => {
     }
   };
 
-  const getTotalExpenses = () => {
-    return filteredExpenses.reduce((total, expense) => total + expense.amount, 0);
-  };
 
-  const getExpensesByCategory = () => {
-    const categories = {} as { [key: string]: number };
-    filteredExpenses.forEach(expense => {
-      categories[expense.category] = (categories[expense.category] || 0) + expense.amount;
-    });
-    return categories;
-  };
 
   const handleAddExpense = () => {
     if (newExpense.amount && newExpense.description) {
@@ -283,7 +227,6 @@ export const ExpenseTracking: React.FC = () => {
     }
   };
 
-  const categoryExpenses = getExpensesByCategory();
 
   return (
     <div className="space-y-6">
@@ -337,7 +280,7 @@ export const ExpenseTracking: React.FC = () => {
             <div>
               <p className="text-sm text-gray-600 dark:text-gray-400">Total Expenses</p>
               <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                ₹{getTotalExpenses().toLocaleString()}
+                ₹{budget?.spent.toLocaleString() || 0}
               </p>
             </div>
             <TrendingUp className="h-8 w-8 text-blue-500" />
@@ -496,16 +439,6 @@ export const ExpenseTracking: React.FC = () => {
                       </span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => {
-                          setSelectedExpense(expense);
-                          setShowEditModal(true);
-                        }}
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
                       <Button variant="ghost" size="sm">
                         <Trash2 className="h-4 w-4" />
                       </Button>
@@ -551,7 +484,7 @@ export const ExpenseTracking: React.FC = () => {
               </label>
               <select
                 value={newExpense.category}
-                onChange={(e) => setNewExpense(prev => ({ ...prev, category: e.target.value as any }))}
+                onChange={(e) => setNewExpense(prev => ({ ...prev, category: e.target.value as DailyExpense['category'] }))}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
               >
                 <option value="junior_artists">Junior Artists</option>
@@ -584,7 +517,7 @@ export const ExpenseTracking: React.FC = () => {
               </label>
               <select
                 value={newExpense.type}
-                onChange={(e) => setNewExpense(prev => ({ ...prev, type: e.target.value as any }))}
+                onChange={(e) => setNewExpense(prev => ({ ...prev, type: e.target.value as DailyExpense['type'] }))}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
               >
                 <option value="service">Service</option>

@@ -1,74 +1,74 @@
 {
     "2025-10-06": {
         "junior_artist_wage": 25000,
-        "location_rent": 60000,
-        "travel_expense": 20000,
+        "location_rent": 50000,
+        "travel_expense": 15000,
         "food_expense": 12000,
-        "art_costume_expense": 40000,
-        "total_estimated": 157000
+        "art_costume_expense": 30000,
+        "total_estimated": 132000
     },
     "2025-10-07": {
         "junior_artist_wage": 30000,
-        "location_rent": 50000,
-        "travel_expense": 15000,
-        "food_expense": 13000,
-        "art_costume_expense": 35000,
-        "total_estimated": 143000
-    },
-    "2025-10-08": {
-        "junior_artist_wage": 15000,
-        "location_rent": 25000,
-        "travel_expense": 8000,
-        "food_expense": 9000,
-        "art_costume_expense": 20000,
-        "total_estimated": 77000
-    },
-    "2025-10-09": {
-        "junior_artist_wage": 20000,
-        "location_rent": 30000,
+        "location_rent": 40000,
         "travel_expense": 10000,
         "food_expense": 10000,
         "art_costume_expense": 25000,
-        "total_estimated": 95000
+        "total_estimated": 115000
+    },
+    "2025-10-08": {
+        "junior_artist_wage": 15000,
+        "location_rent": 30000,
+        "travel_expense": 5000,
+        "food_expense": 8000,
+        "art_costume_expense": 15000,
+        "total_estimated": 73000
+    },
+    "2025-10-09": {
+        "junior_artist_wage": 20000,
+        "location_rent": 20000,
+        "travel_expense": 7000,
+        "food_expense": 9000,
+        "art_costume_expense": 18000,
+        "total_estimated": 74000
     },
     "2025-10-10": {
-        "junior_artist_wage": 18000,
-        "location_rent": 28000,
-        "travel_expense": 9000,
-        "food_expense": 11000,
+        "junior_artist_wage": 25000,
+        "location_rent": 35000,
+        "travel_expense": 8000,
+        "food_expense": 10000,
         "art_costume_expense": 22000,
-        "total_estimated": 88000
+        "total_estimated": 100000
     },
     "2025-10-11": {
-        "junior_artist_wage": 22000,
-        "location_rent": 40000,
-        "travel_expense": 12000,
+        "junior_artist_wage": 35000,
+        "location_rent": 70000,
+        "travel_expense": 20000,
         "food_expense": 14000,
-        "art_costume_expense": 30000,
-        "total_estimated": 118000
+        "art_costume_expense": 40000,
+        "total_estimated": 179000
     },
     "2025-10-12": {
-        "junior_artist_wage": 12000,
-        "location_rent": 50000,
+        "junior_artist_wage": 18000,
+        "location_rent": 45000,
         "travel_expense": 25000,
         "food_expense": 11000,
-        "art_costume_expense": 35000,
-        "total_estimated": 133000
+        "art_costume_expense": 28000,
+        "total_estimated": 127000
     },
     "2025-10-13": {
-        "junior_artist_wage": 10000,
-        "location_rent": 20000,
-        "travel_expense": 15000,
-        "food_expense": 10000,
-        "art_costume_expense": 18000,
+        "junior_artist_wage": 22000,
+        "location_rent": 10000,
+        "travel_expense": 12000,
+        "food_expense": 9000,
+        "art_costume_expense": 20000,
         "total_estimated": 73000
     },
     "2025-10-14": {
-        "junior_artist_wage": 15000,
-        "location_rent": 35000,
-        "travel_expense": 18000,
+        "junior_artist_wage": 28000,
+        "location_rent": 40000,
+        "travel_expense": 15000,
         "food_expense": 12000,
-        "art_costume_expense": 28000,
-        "total_estimated": 108000
+        "art_costume_expense": 35000,
+        "total_estimated": 130000
     }
 }
